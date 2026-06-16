@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Désactive les clones superficiels pour une meilleure pertinence de l'analyse
+          fetch-depth: 0
 
       - name: Configuration de Node.js
         uses: actions/setup-node@v4
@@ -25,8 +25,8 @@ jobs:
       - name: Installation des dépendances
         run: npm ci
 
-      - name: Exécution des tests unitaires
-        run: npm run test:unit -- --run
+      - name: Exécution des tests unitaires avec couverture
+        run: npm run test:unit -- --coverage --run
 
       - name: SonarQube Scan
         uses: SonarSource/sonarcloud-github-action@v3.1.0

@@ -12,7 +12,13 @@ export default defineConfig({
     }
   },
   test: {
-    globals: true,
-    environment: 'jsdom'
+    environment: 'jsdom',
+    exclude: [...fileURLToPath(new URL('./node_modules', import.meta.url))],
+    root: fileURLToPath(new URL('./', import.meta.url)),
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov'],
+      reportsDirectory: './coverage'
+    }
   }
 })
